@@ -1,0 +1,18 @@
+# ---- Python basics ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ---- Build artefacts (z. B. wenn du exe erstellst) ----
+build/
+dist/
+*.spec
+
+# ---- Editor / IDE ----
+.vscode/
+.idea/
+
+# ---- OS-specific ----
+.DS_Store
+Thumbs.db
