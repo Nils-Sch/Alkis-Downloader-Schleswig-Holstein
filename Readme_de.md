@@ -30,7 +30,7 @@ Das Tool lädt die Dateien direkt von den offiziellen Servern.
   - `link_data` (**Direktlink** zur NAS-Datei)
 - Internetzugang
 
-Die Feldnamen sind im Code als Konstanten gesetzt und bei Bedarf änderbar:
+Die Feldnamen sind im Code als Konstanten gesetzt und bei Bedarf änderbar:  
 `FIELD_GEMEINDE`, `FIELD_GEMARKUNG`, `FIELD_FLUR`, `FIELD_URL`.
 
 ---
@@ -38,10 +38,12 @@ Die Feldnamen sind im Code als Konstanten gesetzt und bei Bedarf änderbar:
 ## Start
 
 ### Variante A: Ausführbare Datei (.exe)
+
 1. ZIP aus den Releases herunterladen (sofern vorhanden) und entpacken.  
 2. Programm starten (Doppelklick).
 
 ### Variante B: Python (ohne Zusatzpakete)
+
 1. **Python 3.10–3.12** installieren.  
 2. Script starten:
    ```bash
@@ -51,47 +53,45 @@ Für SSL-Zertifikate nutzt das Script certifi. Falls nötig:
 bash
 Code kopieren
 pip install certifi
-Bedienung (kurz)
-GeoJSON wählen, Zielordner wählen.
 
-GeoJSON laden → Anzahl der Datensätze + Gemeinden werden angezeigt.
+---
 
-Filter setzen (Gemeinde exakt; Gemarkung/Flur = „enthält“).
+## Bedienung (kurz)
 
-Parallelität wählen (1–16).
+1. **GeoJSON wählen**, **Zielordner wählen**  
+2. **GeoJSON laden** → Anzahl der Datensätze + Gemeinden werden angezeigt  
+3. **Filter setzen**  
+   - Gemeinde = exakter Name  
+   - Gemarkung / Flur = „enthält“  
+4. **Parallelität** wählen (1–16)  
+5. **Umlaute**: „behalten“ oder „transliterieren“  
+6. **Vorschau** → zeigt eine Liste der Treffer  
+7. **Download starten**  
+   - Fortschritt im Log  
+   - Am Ende wird `download_index.csv` im Zielordner abgelegt  
 
-Umlaute: „behalten“ oder „transliterieren“.
+---
 
-Vorschau → zeigt eine Liste der Treffer.
+## Ablage / Benennung
 
-Download starten → Fortschritt im Log.
-Am Ende wird download_index.csv im Zielordner abgelegt.
+- **Ordner:** `<Ziel>/<Gemeinde_sicher>/`  
+- **Datei:** `Gemarkung__Flur_<…>__<Name>.nas`  
+- **Namenskonflikte:** `_1`, `_2`, … werden automatisch angehängt  
 
-Ablage/Benennung
+---
 
-Ordner: <Ziel>/<Gemeinde_sicher>/
+## Fehlerhilfe
 
-Datei: Gemarkung__Flur_<…>__<Server- oder URL-Name>.nas
+- **GeoJSON lädt nicht** → Datei/Encoding prüfen; es muss ein `features[]`-Array mit `properties` geben.  
+- **Keine Treffer** → Schreibweise/Filter prüfen (Gemeinde = exakter Name).  
+- **HTTP 403 / 404 / Timeout** → Links veraltet oder Server langsam → GeoJSON von offizieller Quelle neu laden und später erneut versuchen.  
+- **Umlaute komisch** → Modus wechseln (behalten vs. transliterieren).  
+- **Langsam / Abbrüche** → Parallelität anpassen, Internet prüfen.  
 
-Bei Namenskonflikt wird _1, _2, … angehängt.
+---
 
-Fehlerhilfe
-GeoJSON lädt nicht → Datei/Encoding prüfen; es muss ein features[]-Array mit properties geben.
+## Rechtliches
 
-Keine Treffer → Schreibweise/Filter prüfen (Gemeinde = exakter Name).
-
-HTTP 403/404/Timeout → Links veraltet/Server langsam → GeoJSON von der offiziellen Quelle neu laden, später erneut versuchen.
-
-Umlaute komisch → Modus wechseln (behalten vs. transliterieren).
-
-Langsam/Abbrüche → Parallelität anpassen, Internet prüfen.
-
-Rechtliches
-Datenquelle: © GeoBasis-DE/LVermGeo SH, dl-de/by-2-0 (Namensnennung erforderlich).
-
-Dieses Tool (Code): GPL-3.0 – siehe LICENSE im Repository.
-
-Hinweis: Das Tool lädt nur von der offiziellen Quelle. Dieses Repo liefert keine amtlichen Daten mit.
-
-yaml
-Code kopieren
+- **Datenquelle:** © GeoBasis-DE/LVermGeo SH, **dl-de/by-2-0** (Namensnennung erforderlich).  
+- **Dieses Tool (Code):** GPL-3.0 – siehe `LICENSE` im Repository.  
+- **Hinweis:** Das Tool lädt nur von der offiziellen Quelle. Dieses Repo liefert **keine** amtlichen Daten mit.  
